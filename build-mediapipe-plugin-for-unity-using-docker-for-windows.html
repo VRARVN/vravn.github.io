@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to build Mediapipe for Unity</title>
+</head>
+<body>
+    <p>
+        <h1>Build Mediapipe Plugin for Unity using Docker for Windows</h1>
+    </p>
+    <p>
+        <h2>Build Android library</h2>
+    </p>
+    <p>
+        <li>Switch to linux containter</li>
+        <pre>git config --global core.autocrlf false</pre>
+        <pre>git clone https://github.com/homuler/MediaPipeUnityPlugin.git</pre>
+        <pre>cd MediaPipeUnityPlugin</pre>
+        <li>Open WORKSPACE file</li>
+        <li>Change com_google_absl to newest version</li>
+        <p><pre>
+            # ABSL cpp library lts_2020_09_23_3
+            http_archive(
+                name = "com_google_absl",
+                urls = [
+                    "https://github.com/abseil/abseil-cpp/archive/20200923.3.tar.gz",
+                ],
+                # Remove after https://github.com/abseil/abseil-cpp/issues/326 is solved.
+                patches = [
+                    "@com_google_mediapipe//third_party:com_google_absl_f863b622fe13612433fdf43f76547d5edda0c93001.diff"
+                ],
+                patch_args = [
+                    "-p1",
+                ],
+                strip_prefix = "abseil-cpp-20200923.3",
+                sha256 = "ebe2ad1480d27383e4bf4211e2ca2ef312d5e6a09eba869fd2e8a5c5d553ded2"
+            )
+        </pre></p>
+        <li>Save WORKSPACE</li>
+        <pre>docker build -t mediapipe_unity:linux . -f docker/linux/x86_64/Dockerfile</pre>
+        <pre>docker run --cpus=8 --memory=8192m --mount type=bind,src=%CD%\Packages,dst=home/mediapipe/Packages -it mediapipe_unity:linux</pre>
+        <pre>python build.py build --android arm64 -vv</pre>
+    </p>
+    <p>
+        <h2>Build Windows library</h2>
+    </p>
+    <p>
+        <li>Switch to Windows containter</li>
+        <pre>git config --global core.autocrlf false</pre>
+        <pre>git clone https://github.com/homuler/MediaPipeUnityPlugin.git</pre>
+        <pre>cd MediaPipeUnityPlugin</pre>
+        <pre>docker build -t mediapipe_unity:windows . -f docker/windows/x86_64/Dockerfile</pre>
+        <pre>docker run --cpus=8 --memory=8192m --mount type=bind,src=%CD%\Packages,dst=C:\mediapipe\Packages -it mediapipe_unity:windows</pre>
+        <pre>python build.py build --desktop cpu --include_opencv_prebs -v</li>
+    </p>
+</body>
+</html>

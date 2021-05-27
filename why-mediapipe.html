@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>A Review of Google’s New Mobile-Friendly AI Framework: Mediapipe</title>
+    </head>
+    <body>
+        <h1 font-size: 34px>A Review of Google’s New Mobile-Friendly AI Framework: Mediapipe</h1>
+        <h1 font-size: 22px>What is Mediapipe?</h1>
+        <p>
+            Mediapipe is an open-source framework to “build word-class machine learning solutions” by Google — currently in the alpha stage. It has been open-sourced for a year now but has likely been under development for far longer. A key
+            “selling” point (it’s free) of Mediapipe is that the code is written in c++, but it can easily be deployed to any platform, from web assembly to Android to MacOS.
+        </p>
+        <p>
+            When it first released, Mediapipe had only a few demos, but now their GitHub page boasts almost a dozen different demos from persistent object tracking, AR hair coloring, to pose tracking that may leave OpenPose in the dust.
+        </p>
+
+        <h1 font-size: 22px>MediaPipe is Fast</h1>
+        <p>
+            When looking for hand tracking options, our team had two choices, OpenPose and MediaPipe. The first thing that stood out between the two was the absolute difference in speed. On an old Mac, MediaPipe had a sluggish 7 frames per
+            second while OpenPose would be lucky to have 7 seconds per frame.
+        </p>
+        <p>
+            MediaPipe is able to achieve its speed thanks to the use of GPU acceleration and multi-threading. Such development techniques are generally difficult, but MediaPipe takes the reins and does them for you, so long as you follow
+            good graph-making practices. The multi-threading and GPU acceleration allow newer phones to run away with frames, often being at FPS too high to see with the human eye. Although, don’t expect your Motorola from 2015 to keep up.
+            The fact is machine learning is certainly a degree or ten more computationally complex than Flappy Bird.
+        </p>
+
+        <h1 font-size: 22px>Mediapipe is Modular and Reusable</h1>
+        <p>
+            Mediapipe’s use of graphs, subgraphs, and calculators means that the work of one project can easily translate to the work of another. Combine that with side packets and you can really tweak the parameters of each calculator to
+            fit different projects.
+        </p>
+        <p>
+            Mediapipe already comes equipped with a plethora of “example calculators” which you can freely make use of including multi-platform renderers, multi-platform TensorFlow Lite, and already-made neural networks.
+        </p>
+
+        <h1 font-size: 22px>Mediapipe Doesn’t Care about your Deployment Platform</h1>
+        <p>
+            Multi-platform support can be a great task for a small development team and that’s talking about Windows, Mac, and Ubuntu support. Yet with only a few hours of work (minutes if you’re experienced) you can deploy your application
+            not only to desktops but to mobile devices as well. MediaPipe also boasts web assembly support, but our team was not able to test that feature. However, MediaPipe doesn’t come with Windows support, so take that into
+            consideration for desktop applications.
+        </p>
+        <h1 font-size: 22px>MediaPipe is Confusing</h1>
+        <p>
+            From what the rest of the article says, a reader might believe that Google gave me a check to write this (they didn’t). The fact is that I’m greatly impressed with the framework, especially since it’s free to use. However, it of
+            course has its drawbacks. It really does take a month or so of constant work to understand how to do what you want to do with MediaPipe.
+        </p>
+        <p>
+            MediaPipe is not overly complicated for the user. It’s certainly complicated, but that’s under the hood. The problem with MediaPipe is the lack of documentation. MediaPipe’s “documentation” is a website that talks about it’s
+            concepts at a high level and an extremely simple code example. To really understand MediaPipe, a developer has to dive into the MediaPipe example source code. Having a c++ linter in that scenario is a requirement.
+        </p>
+        <p>
+            Now to be fair, MediaPipe does have comments explaining what is happening in the script at the top of many .cc files. However, when there isn’t and you need to use that feature, it’ll be a frustrating afternoon. After about a
+            year of on-off use, our team has released some MediaPipe tutorials online and will be releasing more, but that sort of stuff should have come from Google. There used to be a wikia-like page, but it’s since been taken down in
+            favor of the documentation hosted on www.mediapipe.dev.
+        </p>
+        <h1 font-size: 22px>MediaPipe is in Alpha</h1>
+        <p>
+            MediaPipe devs have said that the lack of documentation is because it’s in alpha, which is understandable. Many features may still be subject to change and rewriting documentation every time it happens is just a waste of time
+            which could have been spent further improving MediaPipe.
+        </p>
+
+        <p>
+            This leads to the ultimate problem, that because MediaPipe is still in early development, many core features may still be subject to change. It is written on the GitHub page that “we may be still making breaking API changes and
+            expect to get to stable APIs by v1.0.” When working with Mediapipe, I had to spend an afternoon updating our code when a class name changed all of a sudden, along with all its methods.
+        </p>
+
+        <h1 font-size: 22px>Mediapipe is Pretty Good</h1>
+        <p>
+            Despite its alpha drawbacks, MediaPipe is currently the best solution for deploying your neural networks to mobile devices and alright at deploying neural networks to desktop. For desktop, it would have taken Windows support for
+            me to be on team MediaPipe, but keep in mind WebAssembly is an option in that case. Still, users should keep in mind that while MediaPipe in alpha there is a lack of documentation — and your workflow could be suddenly
+            interrupted by changes. Some may not see it as a drawback, as less of their competition may be willing to use MediaPipe in its current state, allowing them to be first in the market and have a huge lead when MediaPipe comes out
+            with 1.0.
+        </p>
+    </body>
+</html>
